@@ -4,11 +4,13 @@ for(var i = 0; i < numberofbuttons; i++){
     document.querySelectorAll(".drum")[i].addEventListener("click", function(){
         var buttonname = this.innerHTML;
         makesound(buttonname);        
+        buttonanimation(buttonname);     
     })
 }
 
 document.addEventListener("keypress", function(Event){
     makesound(Event.key);
+    buttonanimation(Event.key);
 })
 
 function makesound(key){
@@ -45,4 +47,11 @@ function makesound(key){
             break;
         default:
     }
+}
+function buttonanimation(key){
+    var activebutton = document.querySelector("." + key);
+    activebutton.classList.add("pressed");
+    setTimeout(function(){
+        activebutton.classList.remove("pressed");
+    }, 100);
 }
